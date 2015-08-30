@@ -1,12 +1,12 @@
 <?php
 namespace HelloN;
 
-use HelloWorld\SayHello;
+use HelloWorld\SayHello as SayHello;
 
 Class HelloGen
 {
   public static function rotate($n) {
-    $s = HelloWorld\SayHello::world();
+    $s = SayHello::world();
 
     static $letters = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     $n = (int)$n % 26;
