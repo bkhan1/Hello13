@@ -3,11 +3,10 @@ namespace HelloN;
 
 use HelloWorld\SayHello;
 
-Namespace HelloN;
 Class HelloGen
 {
   public static function rotate($n) {
-    $s = SayHello::world();
+    $s = HelloWorld\SayHello::world();
 
     static $letters = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     $n = (int)$n % 26;
