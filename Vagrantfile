@@ -8,25 +8,18 @@
 # workstation should display the rendered index page.
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/trusty32"
+  config.vm.box = "ubuntu/trusty64"
 
-#  config.vm.provider :virtualbox do |vb|
-#	vb.gui = true
-#  end
-
-  config.vm.synced_folder ".", "/srv/hello13", create: true, group: "vagrant", owner: "vagrant"
+  config.vm.synced_folder ".", "/srv/hello13"
   
-  config.vm.network :forwarded_port, guest: 80, host: 8181
+  config.vm.network :forwarded_port, guest: 80, host: 8182
  
   config.berkshelf.berksfile_path = 'chef/cookbooks/hello13/Berksfile'
   config.berkshelf.enabled = true
   
   config.vm.provision "chef_solo" do |chef|
-	chef.cookbooks_path = "chef/cookbooks/hello13"
-	chef.add_recipe :apt
-	chef.add_recipe 'nginx'
-	chef.add_recipe 'php-fpm'
-	chef.add_recipe 'hello13'
+	chef.cookbooks_path = "chef/cookbooks"
+	chef.run_list = ["apt", "nginx", "hello13::default", "hello13::php", "hello13::composer"]
   end 
   
 end

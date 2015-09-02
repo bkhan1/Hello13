@@ -1,0 +1,33 @@
+1. I have worked with PHP and Git before but the rest of the technology stack was new to me, hence there was a lot of learning.
+
+2. Putting together a TravisCI build was easy. It's yaml file is sensitive to spaces, but the issues were sorted easily.
+
+3. Vagrant set up was quick.
+
+4. For Chef, I did some quick tutorials on their website using virtual machines provided by them. I did spent some time researching how best to manage the cookbooks. And I am interested in knowing how you do that.
+
+5. The challenge that took most of my time (and head-banging) was setting up Nginx and PHP-FPM. The problems I saw :
+    
+     a- On Vagrant Up, localhost would show Nginx's welcome page. On vagrant reload --provision, it would show the expected site's index page. Vagrant Up was not picking up the custom site.
+         (Fix : I had to remove the custom configs for nginx.conf)
+     b- 502 Bad gateway error. The PHP cookbook by OpsCode was somehow not connecting properly with nginx server.
+		 (Fix : Ditched the OpsCode cookbook. Built a simple recipe of my own.)
+     c- Index Blank Page : phpinfo page was rendering correctly but the index.php page wasn't. 
+         (Fix : Created a Composer cookbook to download required files automatically.)
+
+==============================
+What I could Have Done Better?
+==============================
+ 
+1. It would have helped if I had installed Nginx/Php-FPM combo manually first. This pre-work would have allowed troubleshooting isolated from Vagrant and Chef environments.  		 
+		- Reason : Hindsight is 20/20. 
+		
+2. Since you didn't had a server preference so if I had used IIS/Windows combo or Ubuntu/apache then things would have been smoother. 
+		- Reason : I wanted to learn about Nginx and PHP-FPM, so I decided to take that up.
+		
+======================================
+What I would like to learn more about?
+======================================
+- The debugging techniques in vagrant and Chef.
+	 
+	 

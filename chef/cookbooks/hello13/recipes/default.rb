@@ -1,32 +1,21 @@
-service 'nginx' do
-	action [:enable, :start]
-end	
+# Cookbook Name: hello13
+# Recipe: default
 
-template "/etc/nginx/nginx.conf" do
-  owner "vagrant"
-  group "vagrant"
+template "/etc/nginx/sites-available/site" do
+  action :create
+  owner "root"
+  group "www-data"
   mode "0644"
-  source "nginx.conf.erb"
+  source "hello13.conf.erb"
   notifies :restart, 'service[nginx]', :delayed
 end
 
-nginx_site 'default' do
-  enable false
-end
-
-link '/etc/nginx/sites-enabled/hello13' do
-  to '/etc/nginx/sites-available/hello13'
-end
-
-
-file "/etc/nginx/sites-available/default" do
+link "/etc/nginx/sites-enabled/default" do
   action :delete
   notifies :restart, 'service[nginx]', :delayed
 end
 
-service "php5-fpm" do
-  action :start
-end  
-
-
-
+link '/etc/nginx/sites-enabled/site' do
+  to '/etc/nginx/sites-available/site'
+  notifies :restart, 'service[nginx]', :delayed
+end
