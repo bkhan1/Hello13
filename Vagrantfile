@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder ".", "/srv/hello13"
   
-  config.vm.network :forwarded_port, guest: 80, host: 8182
+  config.vm.network :forwarded_port, guest: 80, host: 8181
  
   config.berkshelf.berksfile_path = 'chef/cookbooks/hello13/Berksfile'
   config.berkshelf.enabled = true

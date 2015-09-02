@@ -1,0 +1,35 @@
+==========================
+Why I Built It This Way ?
+==========================
+
+Suggestion : Please read the Post Mortem before reading this.
+
+1. I saw the assignment in two parts :
+      a- Continous Integration: Create a GitHub repository. Hook it up with TravisCI. Run Unit Tests.
+	  b- Automatedly Build New Environment : Build Vagrant Box. Create Chef Cookbooks for Provisioning.
+
+2. Continous integration part is straight forward design. Let me know if you have any questions about that.
+
+3. For automatedly building a new environment, all of the design work was about the Chef Cookbooks.
+
+===============
+Chef Cookbooks	
+===============
+(I am discussing my design strictly speaking for Chef Solo.)  
+
+1. The cookbook version management can become a nightmare, so I researched and decided to use the Berkshelf vagrant plugin for that. It worked nicely.
+
+2. I initially took the Nginx, Php, and Composer cookbooks from OpsCode. But the Php cookbook simply didn't work with Nginx. I continued to get 502 Bad gateway error. So I created a PHP recipe of my own.
+
+3. Due to the above mentioned point, the cookbooks are currently comprised of OpsCode's cookbooks and my custom recipes.    
+
+4. In order to write my own recipe for Php and Composer, I initially tried to make separate cookbooks but for some reason Chef didn't identify those cookbooks. In a bid to save time I made the recipes in Hello13's cookbook.
+
+==========================================================
+Is it Production Ready? Or What Would I like to Refactor ?	
+==========================================================
+1. Create a custom cookbook for nginx too since using a 3rd party code took away some control from me. (Isn't that always the cae :))
+
+2. Similarly, create separate cookbooks for Php and Composer.
+
+3. Use variables (for users and folders) in Composer and Hello13 cookbook.

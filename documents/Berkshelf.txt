@@ -1,0 +1,9 @@
+=============================
+BerkShelf Plugin Installation
+=============================
+
+The berkshelf plgin for vagrant needs to be installed.
+
+$ vagrant plugin install vagrant-berkshelf
+
+(More at http://berkshelf.com/)
